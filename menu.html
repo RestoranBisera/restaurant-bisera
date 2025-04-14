@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Bisera Menu</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://source.unsplash.com/1920x1080/?restaurant,food') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Background Overlay */
+        .overlay {
+            background: rgba(0, 0, 0, 0.6);
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Language Selector */
+        .language-selector {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            background: white;
+            cursor: pointer;
+        }
+
+        
+        .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.menu iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    border: none;
+    transform: translateX(-25%); /* Show right half */
+}
+
+
+
+        h2, h3 {
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 20px;
+            margin: 8px 0;
+            font-weight: bold;
+        }
+        .show{
+            display: block;
+        }
+        .hide{
+            display: none;
+        }
+        .pdfMenu{
+            height: 100vh;
+
+           
+        }
+        .iframe{
+                height: 100vh;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="overlay">
+        <!-- Language Selector in Top Right Corner -->
+        <div class="language-selector">
+            <select id="languageSelector" onchange="changeLanguage(this.value)">
+                <option value="en">🇬🇧 English</option>
+                <option value="gr">🇬🇷 Greek</option>
+                <option value="mk">🇲🇰 Macedonian</option>
+                <option value="ro">🇷🇴 Romanian</option>
+                <option value="sr">🇷🇸 Serbian</option>
+                <option value="bg">🇧🇬 Bulgarian</option>
+            </select>
+        </div>
+
+        <!-- Menu Content -->
+        <div class="menu">
+           <div id="enMenu" class="pdfMenu">
+            <iframe class="iframe" id="pdfViewer" src="pdfs/enMenu.pdf#toolbar=0&navpanes=0&scrollbar=0" allowfullscreen></iframe>
+           </div>
+           <div id="grMenu" class="hide pdfMenu">
+            <iframe class="iframe" id="pdfViewer" src="pdfs/grMenu.pdf#toolbar=0&navpanes=0&scrollbar=0" allowfullscreen></iframe>
+           </div>
+           <div id="mkMenu" class="hide pdfMenu">
+            <iframe class="iframe" id="pdfViewer" src="pdfs/mkMenu.pdf#toolbar=0&navpanes=0&scrollbar=0" allowfullscreen></iframe>
+           </div>
+           <div id="roMenu" class="hide pdfMenu">
+            <iframe class="iframe" id="pdfViewer" src="pdfs/roMenu.pdf#toolbar=0&navpanes=0&scrollbar=0" allowfullscreen></iframe>
+           </div>
+           <div id="srMenu" class="hide pdfMenu">
+            <iframe class="iframe" id="pdfViewer" src="pdfs/srMenu.pdf#toolbar=0&navpanes=0&scrollbar=0" allowfullscreen></iframe>
+           </div>
+           <div id="bgMenu" class="hide pdfMenu">
+            <iframe class="iframe" id="pdfViewer" src="pdfs/bgMenu.pdf#toolbar=0&navpanes=0&scrollbar=0" allowfullscreen></iframe>
+           </div>
+        </div>
+    </div>
+
+    <script>
+       
+       function changeLanguage(lang) {
+        const languages = ["en", "gr", "mk", "ro", "sr", "bg"];
+        languages.forEach(code => {
+            const menu = document.getElementById(code + "Menu");
+            if (code === lang) {
+                menu.classList.remove("hide");
+                menu.classList.add("show");
+            } else {
+                menu.classList.remove("show");
+                menu.classList.add("hide");
+            }
+        });
+    }
+
+        
+    </script>
+
+</body>
+</html>
