@@ -145,14 +145,14 @@
     </select>
   </div> -->
   <div class="custom-select">
-    <div id="selectedLanguage" class="selected" onclick="toggleDropdown()">🇬🇧 English</div>
+    <div id="selectedLanguage" class="selected" onclick="toggleDropdown()">🇬🇷 Greek</div>
     <ul id="dropdown" class="dropdown hide">
-      <li onclick="changeLanguageCustom('en', '🇬🇧 English')">🇬🇧 English</li>
       <li onclick="changeLanguageCustom('gr', '🇬🇷 Greek')">🇬🇷 Greek</li>
-      <li onclick="changeLanguageCustom('mk', '🇲🇰 Macedonian')">🇲🇰 Macedonian</li>
-      <li onclick="changeLanguageCustom('ro', '🇷🇴 Romanian')">🇷🇴 Romanian</li>
+      <li onclick="changeLanguageCustom('en', '🇬🇧 English')">🇬🇧 English</li>
       <li onclick="changeLanguageCustom('sr', '🇷🇸 Serbian')">🇷🇸 Serbian</li>
-      <li onclick="changeLanguageCustom('bg', '🇧🇬 Bulgarian')">🇧🇬 Bulgarian</li>
+      <li onclick="changeLanguageCustom('mk', '🇲🇰 Macedonian')">🇲🇰 Macedonian</li>    
+      <li onclick="changeLanguageCustom('bg', '🇧🇬 Bulgarian')">🇧🇬 Bulgarian</li> 
+      <li onclick="changeLanguageCustom('ro', '🇷🇴 Romanian')">🇷🇴 Romanian</li>
     </ul>
   </div>
 
@@ -235,12 +235,12 @@
 
 <script>
   const languages = {
-    en: "🇬🇧 English",
     gr: "🇬🇷 Greek",
-    mk: "🇲🇰 Macedonian",
-    ro: "🇷🇴 Romanian",
+    en: "🇬🇧 English",
     sr: "🇷🇸 Serbian",
-    bg: "🇧🇬 Bulgarian"
+    mk: "🇲🇰 Macedonian",  
+    bg: "🇧🇬 Bulgarian",
+    ro: "🇷🇴 Romanian"
   };
 
   function toggleDropdown() {
@@ -269,7 +269,7 @@
 
   // On page load: apply saved language
   document.addEventListener("DOMContentLoaded", () => {
-  const savedLang = localStorage.getItem("selectedLang") || "en";
+  const savedLang = localStorage.getItem("selectedLang") || "gr";
 
   // Set the label
   document.getElementById("selectedLanguage").innerText = languages[savedLang];
