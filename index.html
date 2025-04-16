@@ -249,7 +249,7 @@
   }
 
   function changeLanguageCustom(langCode, langLabel) {
-    // Update displayed language
+   // Update displayed language
     document.getElementById("selectedLanguage").innerText = langLabel;
 
     // Close dropdown
@@ -265,20 +265,20 @@
 
     // Save selection
     localStorage.setItem("selectedLang", langCode);
+
   }
 
   // On page load: apply saved language
   document.addEventListener("DOMContentLoaded", () => {
-  const savedLang = localStorage.getItem("selectedLang") || "gr";
+    const defaultLang = "gr"; // Always use Greek on reload
+  localStorage.setItem("selectedLang", defaultLang); // Optional: update stored value to match default
 
-  // Set the label
-  document.getElementById("selectedLanguage").innerText = languages[savedLang];
+  document.getElementById("selectedLanguage").innerText = languages[defaultLang];
 
-  // Show correct menu
   for (const code in languages) {
     const menu = document.getElementById(code + "Menu");
     if (menu) {
-      menu.classList.toggle("hide", code !== savedLang);
+      menu.classList.toggle("hide", code !== defaultLang);
     }
   }
 });
