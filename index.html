@@ -49,13 +49,17 @@
     align-items: stretch;
     justify-content: center;
     overflow: auto; /* Allow scroll */
+    background-color: #f2dfd8;
     }
 
     .pdfMenu {
     width: 100%;
     max-width: 1000px;
     height: 100%;
-    overflow: auto; /* Allow scroll on container */
+    /* overflow: auto;  */
+    img{
+      width: 100%;
+    }
     }
 
     iframe {
@@ -98,25 +102,80 @@
 
   <div class="menu">
     <div id="enMenu" class="pdfMenu">
-      <iframe src="pdfs/enMenu.pdf#toolbar=0&navpanes=0&scrollbar=0" allowfullscreen></iframe>
+     <img src="images/enMenu/en1.jpg" alt="">
+     <img src="images/enMenu/en2.jpg" alt="">
+     <img src="images/enMenu/en3.jpg" alt="">
+     <img src="images/enMenu/en4.jpg" alt="">
+     <img src="images/enMenu/en5.jpg" alt="">
+     <img src="images/enMenu/en6.jpg" alt="">
+     <img src="images/enMenu/en7.jpg" alt="">
+     <img src="images/enMenu/en8.jpg" alt="">
+     <img src="images/enMenu/en9.jpg" alt="">
+     <img src="images/enMenu/en10.jpg" alt="">
     </div>
     <div id="grMenu" class="pdfMenu hide">
-      <iframe src="pdfs/grMenu.pdf#toolbar=0&navpanes=0&scrollbar=0" allowfullscreen></iframe>
+     <img src="images/grMenu/gr1.jpg" alt="">
+     <img src="images/grMenu/gr2.jpg" alt="">
+     <img src="images/grMenu/gr3.jpg" alt="">
+     <img src="images/grMenu/gr4.jpg" alt="">
+     <img src="images/grMenu/gr5.jpg" alt="">
+     <img src="images/grMenu/gr6.jpg" alt="">
+     <img src="images/grMenu/gr7.jpg" alt="">
+     <img src="images/grMenu/gr8.jpg" alt="">
+     <img src="images/grMenu/gr9.jpg" alt="">
+     <img src="images/grMenu/gr10.jpg" alt="">
     </div>
     <div id="mkMenu" class="pdfMenu hide">
-      <iframe src="pdfs/mkMenu.pdf#toolbar=0&navpanes=0&scrollbar=0" allowfullscreen></iframe>
+      <img src="images/mkMenu/mk1.jpg" alt="">
+      <img src="images/mkMenu/mk2.jpg" alt="">
+      <img src="images/mkMenu/mk3.jpg" alt="">
+      <img src="images/mkMenu/mk4.jpg" alt="">
+      <img src="images/mkMenu/mk5.jpg" alt="">
+      <img src="images/mkMenu/mk6.jpg" alt="">
+      <img src="images/mkMenu/mk7.jpg" alt="">
+      <img src="images/mkMenu/mk8.jpg" alt="">
+      <img src="images/mkMenu/mk9.jpg" alt="">
+      <img src="images/mkMenu/mk10.jpg" alt="">
     </div>
     <div id="roMenu" class="pdfMenu hide">
-      <iframe src="pdfs/roMenu.pdf#toolbar=0&navpanes=0&scrollbar=0" allowfullscreen></iframe>
+      <img src="images/roMenu/ro1.jpg" alt="">
+     <img src="images/roMenu/ro2.jpg" alt="">
+     <img src="images/roMenu/ro3.jpg" alt="">
+     <img src="images/roMenu/ro4.jpg" alt="">
+     <img src="images/roMenu/ro5.jpg" alt="">
+     <img src="images/roMenu/ro6.jpg" alt="">
+     <img src="images/roMenu/ro7.jpg" alt="">
+     <img src="images/roMenu/ro8.jpg" alt="">
+     <img src="images/roMenu/ro9.jpg" alt="">
+     <img src="images/roMenu/ro10.jpg" alt="">
     </div>
     <div id="srMenu" class="pdfMenu hide">
-      <iframe src="pdfs/srMenu.pdf#toolbar=0&navpanes=0&scrollbar=0" allowfullscreen></iframe>
+      <img src="images/srMenu/sr1.jpg" alt="">
+     <img src="images/srMenu/sr2.jpg" alt="">
+     <img src="images/srMenu/sr3.jpg" alt="">
+     <img src="images/srMenu/sr4.jpg" alt="">
+     <img src="images/srMenu/sr5.jpg" alt="">
+     <img src="images/srMenu/sr6.jpg" alt="">
+     <img src="images/srMenu/sr7.jpg" alt="">
+     <img src="images/srMenu/sr8.jpg" alt="">
+     <img src="images/srMenu/sr9.jpg" alt="">
+     <img src="images/srMenu/sr10.jpg" alt="">
     </div>
     <div id="bgMenu" class="pdfMenu hide">
-      <iframe src="pdfs/bgMenu.pdf#toolbar=0&navpanes=0&scrollbar=0" allowfullscreen></iframe>
+      <img src="images/bgMenu/bg1.jpg" alt="">
+      <img src="images/bgMenu/bg2.jpg" alt="">
+      <img src="images/bgMenu/bg3.jpg" alt="">
+      <img src="images/bgMenu/bg4.jpg" alt="">
+      <img src="images/bgMenu/bg5.jpg" alt="">
+      <img src="images/bgMenu/bg6.jpg" alt="">
+      <img src="images/bgMenu/bg7.jpg" alt="">
+      <img src="images/bgMenu/bg8.jpg" alt="">
+      <img src="images/bgMenu/bg9.jpg" alt="">
+      <img src="images/bgMenu/bg10.jpg" alt="">
     </div>
   </div>
 </div>
+
 
 <script>
   function changeLanguage(lang) {
@@ -125,8 +184,16 @@
       const menu = document.getElementById(code + "Menu");
       menu.classList.toggle("hide", code !== lang);
     });
+
+    // Scroll the .menu container to top
+    const menuContainer = document.querySelector(".menu");
+    if (menuContainer) {
+      menuContainer.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 </script>
+
+
 
 </body>
 </html>
