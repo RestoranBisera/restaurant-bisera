@@ -30,17 +30,20 @@
     .language-selector {
       position: absolute;
       top: 20px;
-      right: 20px;
+      right: 30px;
       z-index: 1000;
     }
 
     select {
       padding: 10px;
-      font-size: 16px;
+      font-size: 25px;
       border-radius: 5px;
       border: none;
-      background: white;
+      background: #fff0d1;
       cursor: pointer;
+      text-align: center;
+      width: 200px;
+      position: relative;
     }
 
     .menu {
@@ -84,20 +87,73 @@
         padding: 8px;
       }
     }
+
+    .custom-select {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  z-index: 9999;
+  font-size: 20px;
+  color: black;
+  cursor: pointer;
+}
+
+.selected {
+  background: #fff0d1;
+  padding: 10px;
+  border-radius: 5px;
+  width: 200px;
+  text-align: center;
+}
+
+.dropdown {
+  margin-top: 5px;
+  background: #fff0d1;
+  list-style: none;
+  padding: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  position: absolute;
+  width: 100%;
+}
+
+.dropdown li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown li:hover {
+  background: #ffe0b0;
+}
+
+.hide {
+  display: none;
+}
   </style>
 </head>
 <body>
 
 <div class="overlay">
-  <div class="language-selector">
+  <!-- <div class="language-selector">
     <select id="languageSelector" onchange="changeLanguage(this.value)">
-      <option value="en">🇬🇧 English</option>
-      <option value="gr">🇬🇷 Greek</option>
-      <option value="mk">🇲🇰 Macedonian</option>
-      <option value="ro">🇷🇴 Romanian</option>
-      <option value="sr">🇷🇸 Serbian</option>
-      <option value="bg">🇧🇬 Bulgarian</option>
+      <option value="en">🇬🇧    English</option>
+      <option value="gr">🇬🇷    Greek</option>
+      <option value="mk">🇲🇰    Macedonian</option>
+      <option value="ro">🇷🇴    Romanian</option>
+      <option value="sr">🇷🇸    Serbian</option>
+      <option value="bg">🇧🇬    Bulgarian</option>
     </select>
+  </div> -->
+  <div class="custom-select">
+    <div id="selectedLanguage" class="selected" onclick="toggleDropdown()">🇬🇧 &nbsp;&nbsp; English</div>
+    <ul id="dropdown" class="dropdown hide">
+      <li onclick="changeLanguageCustom('en', '🇬🇧 English')">🇬🇧 &nbsp;&nbsp; English</li>
+      <li onclick="changeLanguageCustom('gr', '🇬🇷 Greek')">🇬🇷 &nbsp;&nbsp; Greek</li>
+      <li onclick="changeLanguageCustom('mk', '🇲🇰 Macedonian')">🇲🇰 &nbsp;&nbsp; Macedonian</li>
+      <li onclick="changeLanguageCustom('ro', '🇷🇴 Romanian')">🇷🇴 &nbsp;&nbsp; Romanian</li>
+      <li onclick="changeLanguageCustom('sr', '🇷🇸 Serbian')">🇷🇸 &nbsp;&nbsp; Serbian</li>
+      <li onclick="changeLanguageCustom('bg', '🇧🇬 Bulgarian')">🇧🇬 &nbsp;&nbsp; Bulgarian</li>
+    </ul>
   </div>
 
   <div class="menu">
@@ -178,20 +234,63 @@
 
 
 <script>
-  function changeLanguage(lang) {
-    const languages = ["en", "gr", "mk", "ro", "sr", "bg"];
-    languages.forEach(code => {
-      const menu = document.getElementById(code + "Menu");
-      menu.classList.toggle("hide", code !== lang);
-    });
+  const languages = {
+    en: "🇬🇧 English",
+    gr: "🇬🇷 Greek",
+    mk: "🇲🇰 Macedonian",
+    ro: "🇷🇴 Romanian",
+    sr: "🇷🇸 Serbian",
+    bg: "🇧🇬 Bulgarian"
+  };
 
-    // Scroll the .menu container to top
-    const menuContainer = document.querySelector(".menu");
-    if (menuContainer) {
-      menuContainer.scrollTo({ top: 0, behavior: 'smooth' });
+  function toggleDropdown() {
+    const dropdown = document.getElementById("dropdown");
+    dropdown.classList.toggle("hide");
+  }
+
+  function changeLanguageCustom(langCode, langLabel) {
+    // Update displayed language
+    document.getElementById("selectedLanguage").innerText = langLabel;
+
+    // Close dropdown
+    toggleDropdown();
+
+    // Show corresponding menu
+    for (const code in languages) {
+      const menu = document.getElementById(code + "Menu");
+      if (menu) {
+        menu.classList.toggle("hide", code !== langCode);
+      }
+    }
+
+    // Save selection
+    localStorage.setItem("selectedLang", langCode);
+  }
+
+  // On page load: apply saved language
+  document.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("selectedLang") || "en";
+
+  // Set the label
+  document.getElementById("selectedLanguage").innerText = languages[savedLang];
+
+  // Show correct menu
+  for (const code in languages) {
+    const menu = document.getElementById(code + "Menu");
+    if (menu) {
+      menu.classList.toggle("hide", code !== savedLang);
     }
   }
+});
+
+  // Optional: click outside to close dropdown
+  window.addEventListener("click", function (e) {
+    if (!e.target.closest(".custom-select")) {
+      document.getElementById("dropdown").classList.add("hide");
+    }
+  });
 </script>
+
 
 
 
